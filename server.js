@@ -36,19 +36,66 @@ app.get('/', function (req, res) {
 
 board.on("ready", function() {
   //Base
-  var servo_base = new five.Servo(2);
+  var servo_base = new five.Servo({
+    pin: 2,
+    type: "continuous",
+    startAt: 90
+  });
   //Aticulacion 1
-  var servo_1 = new five.Servo(3);
+  var servo_1 = new five.Servo({
+    pin: 3,
+    type: "continuous",
+    startAt: 60
+  });
   //Aticulacion 2
-  var servo_2 = new five.Servo(4);
+  var servo_2 = new five.Servo({
+    pin: 4,
+    type: "continuous"
+  });
   //Pinza
-  var servo_pinza = new five.Servo(5);
+  var servo_pinza = new five.Servo({
+    pin: 5,
+    type: "continuous"
+  
+  });
+  //base inicial=90, 0 y 180
+  //art1 inicial= ,atras=60, adelante=;
+  //pinza inicial= 180, 90= cerrado, 180= abierto
 
-  servo_base.to(0);
-  setTimeout(function() {
-    servo_base.to(180);
-  }, 3000);
 
+  app.post('/valor_pinza', function(req, res) {
+    var valor = req.body.estado;
+    console.log("Valor pinza: "+valor);
+    servo_pinza.to(valor);
+    res.status(200).end();
+  });
+
+  app.post('/valor_base', function(req, res) {
+    var valor = req.body.estado;
+    console.log("Valor base: "+valor);
+    servo_base.to(valor);
+    res.status(200).end();
+  });
+
+  app.post('/valor_art1', function(req, res) {
+    var valor = req.body.estado;
+    console.log("Valor art1: "+valor);
+    servo_1.to(valor);
+    res.status(200).end();
+  });
+
+  app.post('/valor_art2', function(req, res) {
+    var valor = req.body.estado;
+    console.log("Valor art2: "+valor);
+    servo_2.to(valor);
+    res.status(200).end();
+  });
+
+    /*
+    setTimeout(function() {
+      servo_pinza.to(160);
+    }, 3000);
+  */
 
 
 

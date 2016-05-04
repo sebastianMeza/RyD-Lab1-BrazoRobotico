@@ -1,54 +1,64 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Brazo</title>
-  <link rel='stylesheet' href='/css/jquery-ui.min.css' />
-  <link rel='stylesheet' href='/css/jquery-ui.structure.min.css' />
-  <link rel='stylesheet' href='/css/jquery-ui.theme.min.css' />
-  <link rel='stylesheet' href='/css/style.css' />
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+  <title>Mi Casa</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <script src="js/bootstrap.js"></script>
+
 </head>
 <body>
   <h1>Brazo </h1>    
   <div id="contenedorControles">
-
-    <div class="itemMove2">
-      <span class="tituloOpcion">Girar</span>
-      <div id="servo_A" ></div>
-      <span>position :</span> <span class="serva_A_position"></span>
-    </div>
-
-    <div class="itemMove">
-      <span class="tituloOpcion">Adelante - Atrás</span>
-      <div id="servo_B" style="height:150px;"></div>
-
-      <span>position : </span><span class="serva_B_position"></span>
-    </div>
-
-    <div class="itemMove">
-      <span class="tituloOpcion">Arriba - Abajo </span>
-      <div id="servo_C" style="height:150px;"></div>
-      <span> position : </span><span class="serva_C_position"></span>
-    </div>
-
-    <div class="itemMove2">
-      <span class="tituloOpcion">Cerrar - Abrir</span>  
-      <div id="servo_D" ></div>
-      <span>position : </span><span class="serva_D_position"></span>
-    </div>
+    <h1>PINZA</h1>
+    <input id="slider_pinza" type="range" min="0" max="180" step="90" value ="180"/>
+    <h1>BASE</h1>
+    <input id="slider_base" type="range" min="0" max="180" step="5" value ="90"/>
+    <h1>ARTICULACIÓN 1 - Atras-->Adelante</h1>
+    <input id="slider_art1" type="range" min="60" max="120" step="5" value ="60"/>
+    <h1>ARTICULACIÓN 2 - Bajar-->Subir</h1>
+    <input id="slider_art2" type="range" min="0" max="180" step="5" value ="90"/>
+    
 
   </div>
 
-  <div class="automatic" > 
-    <div class="mensajeRutina">
-      <span>Automatic Off </span>
-    </div>
-  </div>
+  <script type="text/javascript">
+    $("#slider_pinza").on("change", function(){
+      console.log("Pinza: "+this.value);
+      $.post("http://localhost:3000/valor_pinza", {
+        estado: this.value}, function(result){
+      });
+    });
+
+    $("#slider_base").on("change", function(){
+      console.log("Base: "+this.value);
+      $.post("http://localhost:3000/valor_base", {
+        estado: this.value}, function(result){
+      });
+    });
+
+    $("#slider_art1").on("change", function(){
+      console.log("Art1: "+this.value);
+      $.post("http://localhost:3000/valor_art1", {
+        estado: this.value}, function(result){
+      });
+    });
+
+    $("#slider_art2").on("change", function(){
+      console.log("Art2: "+this.value);
+      $.post("http://localhost:3000/valor_art2", {
+        estado: this.value}, function(result){
+      });
+    });
+
+  </script>
 
 
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/vendor/jquery-1.11.1.min.js"></script>
-  <script src="/js/vendor/jquery-ui.min.js"></script>
-  <script src="/js/main.js"></script>
 </body>
 </html>
