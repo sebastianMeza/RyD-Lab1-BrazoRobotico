@@ -6,33 +6,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-  <title>Mi Casa</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <title>Mi brazito</title>
+  <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>
 
-</head>
-<body>
-  <h1>Brazo </h1>    
-  <div id="contenedorControles">
-    <h1>PINZA</h1>
-    <input id="slider_pinza" type="range" min="0" max="180" step="90" value ="180"/>
-    <h1>BASE</h1>
-    <input id="slider_base" type="range" min="0" max="180" step="5" value ="90"/>
-    <h1>ARTICULACIÓN 1 - Atras-->Adelante</h1>
-    <input id="slider_art1" type="range" min="60" max="120" step="5" value ="60"/>
-    <h1>ARTICULACIÓN 2 - Bajar-->Subir</h1>
-    <input id="slider_art2" type="range" min="0" max="180" step="5" value ="90"/>
-    
 
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="js/materialize.min.js"></script>
+          
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+</head>
+<body class="container" background="image/bg.jpg">
+  <div align="center" style="background-color: white; padding:10px; margin-top:20px;border-radius:10px;border: 5px solid #ff6600;">
+    <h1>Brazo Robótico</h1>
+    <h2>Laboratorio 1 - Robótica y Drones USACH</h2></br>  
+  
+    <div id="contenedorControles">
+
+      <h1>Pinza</h1>
+      <!-- Switch -->
+      <div class="switch">
+        <label>
+          Off
+          <input id="slider_pinza" type="checkbox">
+          <span class="lever"></span>
+          On
+        </label>
+      </div>
+      <h1>BASE - Derecha-Izquierda</h1>
+      <input id="slider_base" type="range" min="0" max="180" step="5" value ="90"/>
+      <h1>ARTICULACIÓN 1 - Atras-->Adelante</h1>
+      <input id="slider_art1" type="range" min="0" max="180" step="5" value ="90"/>
+      <h1>ARTICULACIÓN 2 - Bajar-->Subir</h1>
+      <input id="slider_art2" type="range" min="0" max="180" step="5" value ="90"/>
+    </div>
+    
   </div>
 
   <script type="text/javascript">
+    var pinza = 0;
     $("#slider_pinza").on("change", function(){
-      console.log("Pinza: "+this.value);
+      if (pinza==0)
+        pinza=90;
+      else if (pinza==90)
+        pinza=0;
+      console.log("Pinza: "+pinza);
       $.post("http://localhost:3000/valor_pinza", {
-        estado: this.value}, function(result){
+        estado: pinza}, function(result){
       });
     });
 

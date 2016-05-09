@@ -38,14 +38,12 @@ board.on("ready", function() {
   //Base
   var servo_base = new five.Servo({
     pin: 2,
-    type: "continuous",
-    startAt: 90
+    type: "continuous"
   });
   //Aticulacion 1
   var servo_1 = new five.Servo({
     pin: 3,
-    type: "continuous",
-    startAt: 60
+    type: "continuous"
   });
   //Aticulacion 2
   var servo_2 = new five.Servo({
