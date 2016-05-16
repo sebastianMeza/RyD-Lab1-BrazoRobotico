@@ -1,0 +1,27 @@
+{
+  "name": "RyD-Lab1-BrazoRobotico",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "johnny-five": "^0.9.49",
+    "method-override": "^2.3.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebastianMeza/RyD-Lab1-BrazoRobotico.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebastianMeza/RyD-Lab1-BrazoRobotico/issues"
+  },
+  "homepage": "https://github.com/sebastianMeza/RyD-Lab1-BrazoRobotico"
+}

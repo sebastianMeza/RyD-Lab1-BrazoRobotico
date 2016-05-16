@@ -96,12 +96,37 @@ board.on("ready", function() {
       servo_pinza.to(160);
     }, 3000);
   */
+  app.post('/iniciar', function(req, res) {
+    console.log("Iniciando rutina");
+    
+      servo_pinza.to(90);
 
+
+      servo_base.to(110);
+
+      servo_1.to(105);
+    
+      servo_2.to(105);
+              
+    //code before the pause
+    setTimeout(function(){
+        servo_pinza.to(0);
+    }, 3000);
+    
+  });
 
 
 
 });
 
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
 
 var server = http.createServer(app);
 server.listen(port, function () {
