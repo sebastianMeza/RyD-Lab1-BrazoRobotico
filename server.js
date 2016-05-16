@@ -101,32 +101,38 @@ board.on("ready", function() {
     
       servo_pinza.to(90);
 
+      servo_base.to(108);
 
-      servo_base.to(110);
-
-      servo_1.to(105);
+      timeout([30, 115], 1, function(i){
+          servo_1.to(i);
+      });
+      
     
       servo_2.to(105);
               
-    //code before the pause
-    setTimeout(function(){
-        servo_pinza.to(0);
-    }, 3000);
+      //code before the pause
+      setTimeout(function(){
+          servo_pinza.to(0);
+      }, 5000);
     
   });
 
-
+function timeout(range, time, callback){
+    var i = range[0];                
+    callback(i);
+    Loop();
+    function Loop(){
+        setTimeout(function(){
+            i= i + 20;
+            if (i<range[1]){
+                callback(i);
+                Loop();
+            }
+        }, time*1000)
+    } 
+}
 
 });
-
-function sleep(milliseconds) {
-  var start = new Date().getTime();
-  for (var i = 0; i < 1e7; i++) {
-    if ((new Date().getTime() - start) > milliseconds){
-      break;
-    }
-  }
-}
 
 var server = http.createServer(app);
 server.listen(port, function () {
