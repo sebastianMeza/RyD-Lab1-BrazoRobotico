@@ -43,23 +43,25 @@ board.on("ready", function() {
   //Aticulacion 1
   var servo_1 = new five.Servo({
     pin: 3,
-    type: "continuous"
+    type: "continuous"    
   });
   //Aticulacion 2
   var servo_2 = new five.Servo({
     pin: 4,
-    type: "continuous"
+    type: "continuous"    
   });
   //Pinza
   var servo_pinza = new five.Servo({
     pin: 5,
-    type: "continuous"
-  
+    type: "continuous"    
   });
   //base inicial=90, 0 y 180
   //art1 inicial= ,atras=60, adelante=;
   //pinza inicial= 180, 90= cerrado, 180= abierto
-
+	servo_base.to(85);
+	servo_1.to(30);
+	servo_2.to(145);
+	servo_pinza.to(0);
 
   app.post('/valor_pinza', function(req, res) {
     var valor = req.body.estado;
