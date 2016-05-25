@@ -44,7 +44,15 @@
       <h1>ARTICULACIÓN 2 - Bajar-->Subir</h1>
       <input id="slider_art2" type="range" min="0" max="180" step="5" value ="90"/>
       <br>
-      <div class="btn btn-success" id="btn_iniciar">Iniciar</div>
+      <div class="row">
+        <div class="col col-md-6">
+           <div class="btn btn-success" id="btn_iniciar">Iniciar Rutina 1</div>
+        </div>
+        <div class="col col-md-6">
+           <div class="btn btn-info" id="btn_iniciar2">Iniciar Rutina 2</div>
+        </div>
+      </div>
+      
     </div>
     
   </div>
@@ -83,12 +91,20 @@
       });
     });
     $("#btn_iniciar").on("click", function(){
-      console.log("Art2: "+this.value);
+      console.log("Iniciando rutina 1");
       $.post("http://localhost:3000/iniciar", function(result){
         
       });
 
     });
+    $("#btn_iniciar2").on("click", function(){
+      console.log("Iniciando rutina 2");
+      $.post("http://localhost:3000/iniciar2", function(result){
+        
+      });
+
+    });
+
 
   </script>
 
