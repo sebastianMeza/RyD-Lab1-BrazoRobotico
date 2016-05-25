@@ -88,19 +88,7 @@
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
 
-/*
-//sensor 1: sensor de luz
-//sensor 2: boton
-//sensor 3: proximidad
-//sensor 4: temperatura
-//sensor 5: 
 
-//actuador 1: led amarillo
-//actuador 2: led verde
-//actuador 3: sonido speaker timbre
-//actuador 4: sonido speaker alarma
-//actuador 5: motor ventilador
-*/
 
 var http = require('http');
 var bodyParser = require('body-parser');
