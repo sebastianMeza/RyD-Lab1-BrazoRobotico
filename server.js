@@ -209,15 +209,37 @@ board.on("ready", function() {
     res.status(200).end();
   });
 
-    /*
-    setTimeout(function() {
-      servo_pinza.to(160);
-    }, 3000);
-*/
+
+
 app.post('/iniciar', function(req, res) {
   console.log("Iniciando rutina 1 en el servidor");
     //responder al html
     res.status(200).end();
+    //mover_winner();
+
+    rutina(108,85,60);
+    //esperar 105 segundos
+
+});
+
+app.post('/iniciar2', function(req, res) {
+  res.status(200).end();
+  console.log("Iniciando rutina 2 en el servidor");
+
+   
+  rutina(60, 85, 108);
+  //esperar 105 segundos
+
+
+});
+
+
+
+function rutina(base1,base2,base3){
+
+    var base_1 = base1;
+    var base_2 = base2;
+    var base_3 = base3; 
 
     piezo.play({
       song: "C D F D A - A A A A G G G G - - C D F D G - G G G G F F F F - -",
@@ -225,704 +247,308 @@ app.post('/iniciar', function(req, res) {
       tempo: 100
     });   
 
-
     //VALORES INICIALES  
     servo_base.to(85);
     servo_1.to(30);
     servo_2.to(145);
-    servo_pinza.to(0);
-
-
-
-    setTimeout(function(){
-      mover_pos1_piso3(108);
-      console.log("mover pos1");
-    }, 1000);
-    setTimeout(function(){
-      mover_volver();
-      console.log("mover volver");
-    }, 8.5*1000);
-
-    setTimeout(function(){
-      servo_base.to(90);
-    }, 9.5*1000);
-
-    setTimeout(function(){
-      mover_piso3_pos3(60);
-      console.log("mover piso 3 pos 3");
-    }, 12*1000);
-
-    setTimeout(function(){
-      mover_volver();
-      console.log("mover volver");
-    }, 16.5*1000);
-
-    setTimeout(function(){
-      servo_base.to(90);
-    }, 21.5*1000);
-
-   setTimeout(function(){ ///
-    mover_pos1_piso2(108);
-    console.log("mover pos 1 piso 2");
-  }, 22*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver");
-  }, 30.5*1000);
-
-   setTimeout(function(){
-    servo_base.to(90);
-  }, 31.5*1000);
-
-   setTimeout(function(){
-    mover_pos2_piso2(85);
-    console.log("mover piso 2 pos 2");
-  }, 32*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 1");
-  }, 40.5*1000);
-   setTimeout(function(){ 
-    mover_piso3_pos2(60);
-    console.log("mover piso3 pos 2");
-  }, 41.5*1000);
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 2");
-  }, 49.5*1000);
-   setTimeout(function(){
-    mover_pos2_piso3(85);
-    console.log("mover pos 2 piso 3");
-  }, 51*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 3");
-  }, 59.5*1000);
-   setTimeout(function(){
-    mover_pos1_piso1(108);
-    console.log("mover pos1 piso 1");
-  }, 61.5*1000);
-   setTimeout(function(){
-    mover_volver();
-
-    console.log("mover volver 4");
-  }, 69*1000);
-   setTimeout(function(){
-    mover_piso1_pos3(60);
-    console.log("mover pos1 piso 3");
-  }, 72*1000);
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 5");
-  }, 81*1000);
-
-   setTimeout(function(){
-    mover_pos2_piso33(85);
-    console.log("mover pos2 piso 33");
-  }, 83*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 6");
-  }, 91*1000);
-   setTimeout(function(){
-    mover_pos1_piso1_dejar(108);
-    console.log("mover_pos1_piso1_dejar");
-  }, 93*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 6");
-  }, 99*1000);
-
-   setTimeout(function(){
-    mover_pos2_piso1_tomar(85);
-    console.log("mover_pos2_piso1_tomar");
-  }, 101*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 7");
-  }, 109.5*1000);
-
-   setTimeout(function(){
-    mover_pos3_piso2_dejar(60);
-    console.log("mover pos");
-  }, 113*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 8");
-  }, 119*1000);
-
-   setTimeout(function(){
-    mover_pos1_piso1_tomar(108);
-    console.log("mover_pos1_piso1_tomar");
-  }, 122*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 9");
-  }, 129*1000);
-
-   setTimeout(function(){
-    mover_pos3_piso3(60);
-    console.log("mover pos1");
-  }, 132*1000);
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 10");
-  }, 140*1000);
-
-   setTimeout(function(){
-    mover_winner();
-    console.log("mover winner");
-  }, 143*1000);
-
-
- });
-
-app.post('/iniciar2', function(req, res) {
-  res.status(200).end();
-  console.log("Iniciando rutina 2 en el servidor");
-
-  //VALORES INICIALES  
-    servo_base.to(85);
-    servo_1.to(30);
-    servo_2.to(145);
-    servo_pinza.to(0);
-
-  setTimeout(function(){
-    mover_pos1_piso3(60);
-    console.log("mover pos1");
-  }, 1000);
-  setTimeout(function(){
-    mover_volver();
-    console.log("mover volver");
-  }, 8.5*1000);
-
-  setTimeout(function(){
-    servo_base.to(90);
-  }, 9.5*1000);
-
-  setTimeout(function(){
-    mover_piso3_pos3(108);
-    console.log("mover piso 3 pos 3");
-  }, 12*1000);
-
-  setTimeout(function(){
-    mover_volver();
-    console.log("mover volver");
-  }, 16.5*1000);
-
-  setTimeout(function(){
-    servo_base.to(90);
-  }, 21.5*1000);
-
-  setTimeout(function(){
-    mover_pos1_piso2(60);
-    console.log("mover pos 1 piso 2");
-  }, 22*1000);
-  setTimeout(function(){
-    mover_volver();
-    console.log("mover volver");
-  }, 30.5*1000);
-
-  setTimeout(function(){
-    servo_base.to(90);
-  }, 31.5*1000);
-
-  setTimeout(function(){
-    mover_pos2_piso2(85);
-    console.log("mover piso 2 pos 2");
-  }, 32*1000);
-
-  setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 1");
-  }, 40.5*1000);
-  setTimeout(function(){ 
-    mover_piso3_pos2(108);
-    console.log("mover piso3 pos 2");
-  }, 41.5*1000);
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 2");
-  }, 49.5*1000);
-   setTimeout(function(){
-    mover_pos2_piso3(85);
-    console.log("mover pos 2 piso 3");
-  }, 51*1000);
-///////////////////////////////////////////////////// ACA SEBITA <3
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 3");
-  }, 59.5*1000);
-   setTimeout(function(){
-    mover_pos1_piso1();
-    console.log("mover pos1 piso 1");
-  }, 61.5*1000);
-   setTimeout(function(){
-    mover_volver();
-
-    console.log("mover volver 4");
-  }, 69*1000);
-   setTimeout(function(){
-    mover_piso1_pos3();
-    console.log("mover pos1 piso 3");
-  }, 72*1000);
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 5");
-  }, 81*1000);
-
-   setTimeout(function(){
-    mover_pos2_piso33();
-    console.log("mover pos2 piso 33");
-  }, 83*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 6");
-  }, 91*1000);
-   setTimeout(function(){
-    mover_pos1_piso1_dejar();
-    console.log("mover_pos1_piso1_dejar");
-  }, 93*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 6");
-  }, 99*1000);
-
-   setTimeout(function(){
-    mover_pos2_piso1_tomar();
-    console.log("mover_pos2_piso1_tomar");
-  }, 101*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 7");
-  }, 109.5*1000);
-
-   setTimeout(function(){
-    mover_pos3_piso2_dejar();
-    console.log("mover pos");
-  }, 113*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 8");
-  }, 119*1000);
-
-   setTimeout(function(){
-    mover_pos1_piso1_tomar();
-    console.log("mover_pos1_piso1_tomar");
-  }, 122*1000);
-
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 9");
-  }, 129*1000);
-
-   setTimeout(function(){
-    mover_pos3_piso3(60);
-    console.log("mover pos1");
-  }, 132*1000);
-   setTimeout(function(){
-    mover_volver();
-    console.log("mover volver 10");
-  }, 140*1000);
-
-   setTimeout(function(){
-    mover_winner();
-    console.log("mover winner");
-  }, 143*1000);
-
-
-
-});
-
-
-
-
-function mover_pos1_piso3(base){
-  //RUTINA DEMORA 28 SEGUNDOS
-  setTimeout(function(){
     servo_pinza.to(90);
-    servo_base.to(base);
-  }, 1000);
 
-  //con 'i' desde 30 a 115 en intervalos de 1 segundo
+
+    /*
+    * ATENCION
+    * despues de VOLVER se suman 2 segundos
+    * despues de MOVER A POSICION se suman 5 segundos
+    */
+
+    //tomar pieza pequeña de 1
+    setTimeout(function(){
+      mover_piso3(base_1);
+      cerrar_pinza();
+      console.log("mover-pos1->piso3");
+    }, 1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 6*1000);
+
+    //dejar pieza pequeña en 3
+    setTimeout(function(){
+      mover_piso1(base_3);
+      abrir_pinza();
+      console.log("mover-pos3->piso1");
+    }, 8*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 13*1000);
+
+    //tomar pieza mediana de 1
+    setTimeout(function(){
+      mover_piso2(base_1);
+      cerrar_pinza();
+      console.log("mover-pos1->piso2");
+    }, 15*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 20*1000);
+
+    //dejar pieza mediana en 2
+    setTimeout(function(){
+      mover_piso1(base_2);
+      abrir_pinza();
+      console.log("mover-pos2->piso1");
+    }, 22*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 27*1000);
+
+    //tomar pieza pequeña de 1
+    setTimeout(function(){
+      mover_piso1(base_3);
+      cerrar_pinza();
+      console.log("mover-pos3->piso1");
+    }, 29*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 34*1000);
+
+    //dejar pieza pequeña en 2
+    setTimeout(function(){
+      mover_piso2(base_2);
+      abrir_pinza();
+      console.log("mover-pos2->piso2");
+    }, 36*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 41*1000);
+////////////////////////////////
+
+    //tomar pieza grande de 1
+    setTimeout(function(){
+      mover_piso1(base_1);
+      cerrar_pinza();
+      console.log("mover-pos1->piso1");
+    }, 43*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 48*1000);
+
+    //dejar pieza grande en 3
+    setTimeout(function(){
+      mover_piso1(base_3);
+      abrir_pinza();
+      console.log("mover-pos3->piso1");
+    }, 50*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 55*1000);
+
+////////////////////////////////////
+
+    //tomar pieza pequeña de 2
+    setTimeout(function(){
+      mover_piso2(base_2);
+      cerrar_pinza();
+      console.log("mover-pos2->piso2");
+    }, 57*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 62*1000);
+
+    //dejar pieza pequeña en 1
+    setTimeout(function(){
+      mover_piso1(base_1);
+      abrir_pinza();
+      console.log("mover-pos1->piso1");
+    }, 64*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 69*1000);
+
+////////////////////////////////////
+
+    //tomar pieza mediana de 2
+    setTimeout(function(){
+      mover_piso1(base_2);
+      cerrar_pinza();
+      console.log("mover-pos2->piso1");
+    }, 71*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 76*1000);
+
+    //dejar pieza mediana en 3
+    setTimeout(function(){
+      mover_piso2(base_3);
+      abrir_pinza();
+      console.log("mover-pos3->piso2");
+    }, 78*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 83*1000);
+
+////////////////////////////////////
+
+    //tomar pieza pequeña de 1
+    setTimeout(function(){
+      mover_piso1(base_1);
+      cerrar_pinza();
+      console.log("mover-pos1->piso1");
+    }, 85*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 90*1000);
+
+    //dejar pieza pequeña en 3
+    setTimeout(function(){
+      mover_piso3(base_3);
+      abrir_pinza();
+      console.log("mover-pos3->piso3");
+    }, 92*1000);
+    
+    setTimeout(function(){
+      mover_volver();
+      console.log("mover:volver");
+    }, 97*1000);
+
+    setTimeout(function(){
+      mover_winner();
+      console.log("mover:winner");
+    }, 100*1000);
+
+}
+
+
+function mover_piso3(base){
+  setTimeout(function(){
+    servo_base.to(base);
+  }, 200);
+
   timeout([30, 95], 0.1, function(i){
     servo_1.to(i);
-    //console.log("servo_1: "+i);
   });
-  timeout([117, 148], 0.1, function(i){
-    servo_2.to(115+145-i);
-    //console.log("servo_2: "+(115+145-i));
-  });
-  //pinza cerrar
-  setTimeout(function(){
-    timeout_pinza([0, 90], 1, function(i){
-      servo_pinza.to(90-i);
-      //console.log("pinza: "+(90-i));
-    });
-  }, 15*100);
-}
 
-function mover_piso3_pos3(base){
- setTimeout(function(){
-      //servo_pinza.to(90);
-      servo_base.to(base);
-    }, 1000);
-
-      //con 'i' desde 30 a 115 en intervalos de 1 segundo
-      timeout([30, 105], 0.1, function(i){
-        servo_1.to(i);
-        //console.log("servo_1: "+i);
-      });
-      timeout([110, 105], 0.1, function(i){
-        servo_2.to(115+105-i);
-        //console.log("servo_2: "+(115+145-i));
-      });
-      //pinza cerrar
-      setTimeout(function(){
-        timeout_pinza([0, 90], 1, function(i){
-          servo_pinza.to(i);
-        });
-      }, 15*100);
-    }
-
-    function mover_pos1_piso2(base){
-  //RUTINA DEMORA 28 SEGUNDOS
-  setTimeout(function(){
-    servo_pinza.to(90);
-    servo_base.to(base);
-  }, 1000);
-
-  //con 'i' desde 30 a 115 en intervalos de 1 segundo
-  timeout([30, 100], 0.1, function(i){
-    servo_1.to(i);
-    //console.log("servo_1: "+i);
-  });
-  timeout([110, 135], 0.1, function(i){
-    servo_2.to(110+135-i);
-    //console.log("servo_2: "+(115+145-i));
-  });
-  //pinza cerrar
-  setTimeout(function(){
-    timeout_pinza([0, 90], 1, function(i){
-      servo_pinza.to(90-i);
-      //console.log("pinza: "+(90-i));
-    });
-  }, 15*100);
-}
-
-
-function mover_pos2_piso2(base){
-  //RUTINA DEMORA 28 SEGUNDOS
-  setTimeout(function(){
-    //servo_pinza.to(90);
-    servo_base.to(base);
-  }, 200);
-
-  //con 'i' desde 30 a 115 en intervalos de 1 segundo
-  timeout([30, 100], 0.1, function(i){
-    servo_1.to(i);
-    //console.log("servo_1: "+i);
-  });
-  timeout([110, 85], 0.1, function(i){
-    servo_2.to(110+85-i);
-    //console.log("servo_2: "+(115+145-i));
-  });
-  //pinza cerrar
-  setTimeout(function(){
-    timeout_pinza([0, 90], 1, function(i){
-      servo_pinza.to(i);
-      //console.log("pinza: "+(90-i));
-    });
-  }, 15*100);
-}
-
-function mover_piso3_pos2(base){
- setTimeout(function(){
-  servo_pinza.to(90);
-  servo_base.to(base);
-}, 200);
-
-      //con 'i' desde 30 a 115 en intervalos de 1 segundo
-      timeout([30, 105], 0.1, function(i){
-        servo_1.to(i);
-        //console.log("servo_1: "+i);
-      });
-      timeout([110, 105], 0.1, function(i){
-        servo_2.to(115+105-i);
-        //console.log("servo_2: "+(115+145-i));
-      });
-      //pinza cerrar
-      setTimeout(function(){
-        timeout_pinza([0, 90], 1, function(i){
-          servo_pinza.to(90-i);
-        });
-      }, 15*100);
-    }
-
-
-  function mover_pos2_piso3(base){
-
-      setTimeout(function(){
-        //servo_pinza.to(90);
-        servo_base.to(base);
-      }, 200);
-
-      //con 'i' desde 30 a 115 en intervalos de 1 segundo
-      timeout([30, 95], 0.2, function(i){
-        servo_1.to(i);
-        //console.log("servo_1: "+i);
-      });
-      timeout([85, 95], 0.2, function(i){
-        servo_2.to(i);
-        console.log("servo_2 ***: "+(i));
-      });
-      //pinza cerrar
-      setTimeout(function(){
-        timeout_pinza([0, 90], 1, function(i){
-          servo_pinza.to(i);
-          //console.log("pinza: "+(90-i));
-        });
-      }, 2*16*100);
-    }
-
-    function mover_pos1_piso1(base){
-      //RUTINA DEMORA 28 SEGUNDOS
-      setTimeout(function(){
-        servo_pinza.to(90);
-        servo_base.to(base);
-      }, 200);
-
-      //con 'i' desde 30 a 115 en intervalos de 1 segundo
-      timeout([30, 120], 0.1, function(i){
-        servo_1.to(i);
-        //console.log("servo_1: "+i);
-      });
-      timeout([90, 135], 0.1, function(i){
-        servo_2.to(90+135-i);
-        //console.log("servo_2: "+(115+145-i));
-      });
-      //pinza cerrar
-      setTimeout(function(){
-        timeout_pinza([0, 90], 1, function(i){
-          servo_pinza.to(90-i);
-          //console.log("pinza: "+(90-i));
-        });
-      }, 19*100);
-    }
-
-    function mover_piso1_pos3(base){
-     setTimeout(function(){
-      //servo_pinza.to(90);
-      servo_base.to(base);
-    }, 200);
-
-      //con 'i' desde 30 a 115 en intervalos de 1 segundo
-      timeout([30, 105], 0.1, function(i){
-        servo_1.to(i);
-        //console.log("servo_1: "+i);
-      });
-      timeout([105, 110], 0.1, function(i){
-        servo_2.to(115+105-i);
-        //console.log("servo_2: "+(115+145-i));
-      });
-      //pinza cerrar
-      setTimeout(function(){
-        timeout_pinza([0, 90], 1, function(i){
-          servo_pinza.to(i);
-        });
-      }, 15*100);
-    }
-
-    function mover_pos2_piso33(base){
-  //RUTINA DEMORA 28 SEGUNDOS
-  setTimeout(function(){
-    servo_pinza.to(90);
-    servo_base.to(base);
-  }, 300);
-
-    //con 'i' desde 30 a 115 en intervalos de 1 segundo
-    timeout([30, 95], 0.1, function(i){
-      servo_1.to(i);
-      //console.log("servo_1: "+i);
-    });
-    timeout([85, 105], 0.1, function(i){
-      servo_2.to(i);
-      //console.log("servo_2: "+(115+145-i));
-    });
-    //pinza cerrar
-    setTimeout(function(){
-      timeout_pinza([0, 90], 1, function(i){
-        servo_pinza.to(90-i);
-        //console.log("pinza: "+(90-i));
-      });
-    }, 13*100);
-  }
-
-  function mover_pos1_piso1_dejar(base){
-    setTimeout(function(){
-      servo_base.to(base);
-    }, 100);
-
-    //con 'i' desde 30 a 115 en intervalos de 1 segundo
-    timeout([30, 105], 0.1, function(i){
-      servo_1.to(i);
-      //console.log("servo_1: "+i);
-    });
-    timeout([100, 145], 0.1, function(i){
-      servo_2.to(100+145-i);
-      //console.log("servo_2: "+(115+145-i));
-    });
-    //pinza cerrar
-    setTimeout(function(){
-      timeout_pinza([0, 90], 1, function(i){
-        servo_pinza.to(i);
-        //console.log("pinza: "+(i));
-      });
-    }, 15*100);
-  }
-
-  function mover_pos2_piso1_tomar(base){
-  //RUTINA DEMORA 28 SEGUNDOS
-  setTimeout(function(){
-    //servo_pinza.to(90);
-    servo_base.to(base);
-  }, 200);
-
-  //con 'i' desde 30 a 115 en intervalos de 1 segundo
-  timeout([30, 100], 0.1, function(i){
-    servo_1.to(i);
-    //console.log("servo_1: "+i);
-  });
-  timeout([110, 85], 0.1, function(i){
-    servo_2.to(110+85-i);
-    //console.log("servo_2: "+(115+145-i));
-  });
-  //pinza cerrar
-  setTimeout(function(){
-    timeout_pinza([0, 90], 1, function(i){
-      servo_pinza.to(90-i);
-      //console.log("pinza: "+(90-i));
-    });
-  }, 15*100);
-}
-
-
-
-function mover_pos3_piso2_dejar(base){
-  //RUTINA DEMORA 28 SEGUNDOS
-  setTimeout(function(){
-    //servo_pinza.to(90);
-    servo_base.to(base);
-  }, 200);
-
-  //con 'i' desde 30 a 115 en intervalos de 1 segundo
-  timeout([30, 100], 0.1, function(i){
-    servo_1.to(i);
-    //console.log("servo_1: "+i);
-  });
   timeout([115, 145], 0.1, function(i){
     servo_2.to(115+145-i);
-    //console.log("servo_2: "+(115+145-i));
   });
-  //pinza abrir
-  setTimeout(function(){
-    timeout_pinza([0, 90], 1, function(i){
-      servo_pinza.to(i);
-      //console.log("pinza: "+(90-i));
-    });
-  }, 2000);
 }
 
-
-function mover_pos1_piso1_tomar(base){
+function mover_piso2(base){
   setTimeout(function(){
     servo_base.to(base);
-  }, 100);
+  }, 200);
 
-    //con 'i' desde 30 a 115 en intervalos de 1 segundo
-    timeout([30, 105], 0.1, function(i){
-      servo_1.to(i);
-      //console.log("servo_1: "+i);
-    });
-    timeout([100, 145], 0.1, function(i){
-      servo_2.to(100+145-i);
-      //console.log("servo_2: "+(115+145-i));
-    });
-    //pinza cerrar
-    setTimeout(function(){
-      timeout_pinza([0, 90], 1, function(i){
-        servo_pinza.to(90-i);
-        //console.log("pinza: "+(i));
-      });
-    }, 15*100);
-  }
-
-  function mover_pos3_piso3(base){
-    setTimeout(function(){
-    //servo_pinza.to(90);
-    servo_base.to(base);
-  }, 1000);
-
-  //con 'i' desde 30 a 115 en intervalos de 1 segundo
-  timeout([30, 95], 0.1, function(i){
+  timeout([30, 100], 0.1, function(i){
     servo_1.to(i);
-    //console.log("servo_1: "+i);
   });
-  timeout([120, 145], 0.1, function(i){
-    servo_2.to(120+145-i);
-    //console.log("servo_2: "+(115+145-i));
+
+  timeout([110, 135], 0.1, function(i){
+    servo_2.to(110+135-i);
   });
-  //pinza cerrar
+}
+
+function mover_piso1(base){
+  setTimeout(function(){
+    servo_base.to(base);
+  }, 200);
+
+  timeout([30, 105], 0.1, function(i){
+    servo_1.to(i);
+  });
+  timeout([105, 145], 0.1, function(i){
+    servo_2.to(105+145-i);
+  });
+}
+
+function cerrar_pinza(){
+  setTimeout(function(){
+    timeout_pinza([0, 90], 1, function(i){
+      servo_pinza.to(90-i);
+    });
+  }, 5*100);
+}
+function abrir_pinza(){
   setTimeout(function(){
     timeout_pinza([0, 90], 1, function(i){
       servo_pinza.to(i);
-      //console.log("pinza: "+(90-i));
     });
-  }, 15*100);
+  }, 5*100);
 }
 
 function mover_volver(){
-  //RUTINA DEMORA 13 SEGUNDOS
-  //con 'i' desde 30 a 115 en intervalos de 1 segundo
-  console.log("entro en volver");
-  timeout([115, 145], 0.1, function(i){
-    servo_2.to(i);
-    //console.log("servo_2: "+(i));
-  });
   timeout([30, 60], 0.1, function(i){
     servo_1.to(30+60-i);
-    //console.log("servo_1: "+(30+90-i));
+  });
+  timeout([115, 145], 0.1, function(i){
+    servo_2.to(i);
   });
   setTimeout(function(){
-    servo_base.to(90);
-  }, 600);
+    servo_base.to(85);
+  }, 800);
   
 }
 
 function mover_winner(){
   setTimeout(function(){
     servo_pinza.to(0);
+    servo_1.to(45);
+    servo_2.to(160);
   }, 500);
 
   setTimeout(function(){
     servo_pinza.to(90);
+    servo_1.to(75);
   }, 2*500);
 
   setTimeout(function(){
     servo_pinza.to(0);
+   servo_1.to(45);
   }, 3*500);
+
+  setTimeout(function(){
+    servo_pinza.to(90);
+    servo_1.to(75);
+  }, 4*500);
+
+  setTimeout(function(){
+    servo_pinza.to(0);
+   servo_1.to(45);
+   }, 5*500);
+
+  setTimeout(function(){
+    servo_pinza.to(90);
+    servo_1.to(75);
+
+  }, 6*500);
+
+  setTimeout(function(){
+    servo_pinza.to(0);
+  }, 7*500);
+
 
 }
 
@@ -933,26 +559,6 @@ server.listen(port, function () {
   console.log('Servidor en puerto '+port);
 });
 
-/*
-VALORES PARA SERVO:
-INICIAL:
-  servo_base.to(85);
-  servo_1.to(30);
-  servo_2.to(145);
-  servo_pinza.to(0);
-
-PUNTO 1 - PISO 3:
-  servo_base.to(105);
-  servo_1.to(95);
-  servo_2.to(105);
-  servo_pinza.to(0);
-
-
-
-
-
-
-  */
 
 
 
