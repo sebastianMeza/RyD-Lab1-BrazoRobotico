@@ -1,31 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
   <title>Mi brazito</title>
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.js"></script>
 
-
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <script src="js/jquery-ui.js"></script>
+  
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="css/materialize.min.css">
 
   <!-- Compiled and minified JavaScript -->
   <script src="js/materialize.min.js"></script>
-          
+
 
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
 </head>
+<style>
+.no-close .ui-dialog-titlebar-close {
+  display: none;
+}
+.img-adaptable{
+  width: 77%;
+}
+input[type=range].vVertical {
+  -webkit-appearance: none;
+  width: 140px;
+  height:10px;
+  margin-top: 70px;
+  margin-bottom: 30px;
+  -webkit-transform:rotate(270deg);       
+  -moz-transform:rotate(270deg);
+  -o-transform:rotate(270deg);
+  -ms-transform:rotate(270deg);
+  transform:rotate(270deg);
+
+}
+input[type=range].vHorizon {
+  -webkit-appearance: none;
+  height: 10px;
+  width:200px;
+
+}
+</style>
 <body class="container" background="image/bg.jpg">
   <div align="center" style="background-color: white; padding:10px; margin-top:20px;border-radius:10px;border: 5px solid #ff6600;">
     <h1>Brazo Robótico</h1>
     <h2>Laboratorio 1 - Robótica y Drones USACH</h2></br>  
-  
+
     <div id="contenedorControles">
       <h1>Pinza</h1>
       <!-- Switch -->
@@ -37,75 +66,119 @@
           Abrir
         </label>
       </div>
-      <h1>BASE - Derecha-Izquierda</h1>
-      <input id="slider_base" type="range" min="0" max="180" step="5" value ="90"/>
-      <h1>ARTICULACIÓN 1 - Atras-->Adelante</h1>
-      <input id="slider_art1" type="range" min="0" max="180" step="5" value ="90"/>
-      <h1>ARTICULACIÓN 2 - Bajar-->Subir</h1>
-      <input id="slider_art2" type="range" min="0" max="180" step="5" value ="90"/>
       <br>
       <div class="row">
         <div class="col col-md-6">
-           <div class="btn btn-success" id="btn_iniciar">Iniciar Rutina 1</div>
+          <h3>ARTICULACIÓN 1 - Atras-Adelante</h3>
+          <p class="range-field">
+            <input id="slider_art1" type="range" min="0" max="180" step="5" value ="90" class="vHorizon"/>
+          </p>
+          <h3>ARTICULACIÓN 2 - Bajar-Subir</h3>
+          <p class="range-field">
+            <input id="slider_art2" type="range" min="0" max="180" step="5" value ="90" class="vVertical"/>
+          </p>
         </div>
         <div class="col col-md-6">
-           <div class="btn btn-info" id="btn_iniciar2">Iniciar Rutina 2</div>
+          <h3>BASE - Derecha-Izquierda</h3>
+          <p class="range-field">
+            <input id="slider_base" type="range" min="0" max="180" step="5" value ="90" class="vHorizon"/> 
+          </p>
+
         </div>
       </div>
-      
-    </div>
-    
+      <br>
+      <div class="row">
+        <div class="col col-md-6">
+         <div class="btn btn-success" id="btn_iniciar">Iniciar Rutina 1</div>
+       </div>
+       <div class="col col-md-6">
+         <div class="btn btn-info" id="btn_iniciar2">Iniciar Rutina 2</div>
+       </div>
+     </div>
+
+   </div>
+
+ </div>
+ <div id="dialog-message" title="Implementando Rutina..." align="center" class="hidden">
+  <p>
+    <legend>
+      Espere un momento por favor</legend>
+      <br>
+      <img src="image/robot.gif" alt="" class="img-adaptable">
+    </p>
+
   </div>
-
   <script type="text/javascript">
-    var pinza = 0;
-    $("#slider_pinza").on("change", function(){
-      if (pinza==0)
-        pinza=90;
-      else if (pinza==90)
-        pinza=0;
-      console.log("Pinza: "+pinza);
-      $.post("http://localhost:3000/valor_pinza", {
-        estado: pinza}, function(result){
+  var pinza = 0;
+  $("#slider_pinza").on("change", function(){
+    if (pinza==0)
+      pinza=90;
+    else if (pinza==90)
+      pinza=0;
+    console.log("Pinza: "+pinza);
+    $.post("http://localhost:3000/valor_pinza", {
+      estado: pinza}, function(result){
+      });
+  });
+
+  $("#slider_base").on("change", function(){
+    console.log("Base: "+this.value);
+    $.post("http://localhost:3000/valor_base", {
+      estado: this.value}, function(result){
+      });
+  });
+
+  $("#slider_art1").on("change", function(){
+    console.log("Art1: "+this.value);
+    $.post("http://localhost:3000/valor_art1", {
+      estado: this.value}, function(result){
+      });
+  });
+
+  $("#slider_art2").on("change", function(){
+    console.log("Art2: "+this.value);
+    $.post("http://localhost:3000/valor_art2", {
+      estado: this.value}, function(result){
+      });
+  });
+  $("#btn_iniciar").on("click", function(){
+    console.log("Iniciando rutina 1");
+
+    $( "#dialog-message" ).removeClass("hidden");
+    $(function() {
+      $( "#dialog-message" ).dialog({
+        height: 400,
+        width: 400,
+        resizable: false,
+        dialogClass: "no-close",
+        modal: true,
+        closeOnEscape: false
+
       });
     });
+    $.post("http://localhost:3000/inicia", function(result){
+     $( "#dialog-message" ).dialog( "close" );
+   });
 
-    $("#slider_base").on("change", function(){
-      console.log("Base: "+this.value);
-      $.post("http://localhost:3000/valor_base", {
-        estado: this.value}, function(result){
+  });
+  $("#btn_iniciar2").on("click", function(){
+    console.log("Iniciando rutina 2");
+    $( "#dialog-message" ).removeClass("hidden");
+    $(function() {
+      $( "#dialog-message" ).dialog({
+        height: 400,
+        width: 400,
+        resizable: false,
+        dialogClass: "no-close",
+        modal: true,
+        closeOnEscape: false
       });
     });
+    $.post("http://localhost:3000/inicia2", function(result){
+     $( "#dialog-message" ).dialog( "close" );
+   });
 
-    $("#slider_art1").on("change", function(){
-      console.log("Art1: "+this.value);
-      $.post("http://localhost:3000/valor_art1", {
-        estado: this.value}, function(result){
-      });
-    });
-
-    $("#slider_art2").on("change", function(){
-      console.log("Art2: "+this.value);
-      $.post("http://localhost:3000/valor_art2", {
-        estado: this.value}, function(result){
-      });
-    });
-    $("#btn_iniciar").on("click", function(){
-      console.log("Iniciando rutina 1");
-      $.post("http://localhost:3000/iniciar", function(result){
-        
-      });
-
-    });
-    $("#btn_iniciar2").on("click", function(){
-      console.log("Iniciando rutina 2");
-      $.post("http://localhost:3000/iniciar2", function(result){
-        
-      });
-
-    });
-
-
+  });
   </script>
 
 

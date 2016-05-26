@@ -214,22 +214,23 @@ board.on("ready", function() {
 app.post('/iniciar', function(req, res) {
   console.log("Iniciando rutina 1 en el servidor");
     //responder al html
-    res.status(200).end();
+    
     //mover_winner();
 
     rutina(108,85,60);
     //esperar 105 segundos
+    res.status(200).end();
 
 });
 
 app.post('/iniciar2', function(req, res) {
-  res.status(200).end();
+  
   console.log("Iniciando rutina 2 en el servidor");
 
    
   rutina(60, 85, 108);
   //esperar 105 segundos
-
+  res.status(200).end();
 
 });
 
