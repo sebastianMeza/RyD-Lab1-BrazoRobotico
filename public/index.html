@@ -156,8 +156,12 @@ input[type=range].vHorizon {
 
       });
     });
-    $.post("http://localhost:3000/inicia", function(result){
-     $( "#dialog-message" ).dialog( "close" );
+
+    setTimeout(function(){
+      $( "#dialog-message" ).dialog( "close" );
+    }, 102*1000);
+
+    $.post("http://localhost:3000/iniciar", function(result){
    });
 
   });
@@ -174,8 +178,11 @@ input[type=range].vHorizon {
         closeOnEscape: false
       });
     });
-    $.post("http://localhost:3000/inicia2", function(result){
-     $( "#dialog-message" ).dialog( "close" );
+    setTimeout(function(){
+      $( "#dialog-message" ).dialog( "close" );
+    }, 102*1000);
+    $.post("http://localhost:3000/iniciar2", function(result){
+     
    });
 
   });
